@@ -76,6 +76,6 @@ fun <T : Any, K : Any> Observable<List<T>>.listSelection(
             .map { item -> ListSelectionPartialStates.selected(item) }
 
     return Observable.merge(initialSelectionObservable, itemsObservable, selectedObservable)
-            .scan(ListSelection<T>()) { listSelection, partialState -> partialState.invoke(listSelection) }
+            .scan(ListSelection(), PartialViewStates.apply())
             .distinctUntilChanged()
 }
